@@ -1,0 +1,22 @@
+{
+  "student": {
+    "givenName": "Penelope",
+    "familyName": "Court",
+    "preferredName": "Penelope",
+    "dateOfBirth": "2015-03-14",
+    "gender": "Female"
+  },
+  "parent": {
+    "givenName": "Sam",
+    "familyName": "Court",
+    "email": "sam@example.com",
+    "mobile": "0400 000 000"
+  },
+  "address": {
+    "line1": "12 Example Street",
+    "suburb": "Surry Hills",
+    "state": "NSW",
+    "postcode": "2010",
+    "country": "Australia"
+  }
+}
