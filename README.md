@@ -36,8 +36,7 @@ Install:
 
 - Node.js 22+
 - npm
-- Docker Desktop (optional)
-- Playwright browsers
+- Docker Desktop (optional for n8n workflow prototype)
 
 Verify:
 
