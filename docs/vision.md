@@ -1,357 +1,235 @@
 # Vision
 
-> Helping people complete complex government forms with confidence.
+## The problem
 
----
+People repeatedly provide the same information and supporting documents to government and commercial services throughout their lives.
 
-# Why this project exists
+Applying for school enrolment, childcare, licences, permits, working with children checks, Fit2Work, grants, benefits and countless other services typically requires the user to:
 
-Government forms are often one of the most stressful interactions people have.
+- locate identity documents
+- prove relationships to partners or children
+- repeatedly enter the same personal information
+- upload the same evidence
+- interpret complex forms
+- manually reconcile inconsistencies between documents.
 
-Parents enrolling a child in school, citizens applying for benefits, people dealing with health, immigration or licensing all face the same problems:
+Digital identity solutions such as myID, ConnectID and password managers help prove identity or remember information, but they do not help people complete the task itself.
 
-- the information already exists somewhere
-- they don't know which documents are needed
-- they repeatedly enter the same information
-- they worry about making mistakes
-- they don't understand why a question is being asked
-- they lose confidence that they have completed the form correctly
-
-Today, the burden sits almost entirely with the citizen.
-
-Gov Form Copilot shifts that burden to software.
-
-Not by taking control away from the user, but by acting as an intelligent assistant that understands both the form and the evidence available.
+The burden of understanding forms, locating evidence and entering data still sits almost entirely with the user.
 
 ---
 
 # Vision
 
-Create an AI assistant that can understand:
+Create a **Trusted Personal Data Copilot** that helps people complete complex life events using verified information while keeping the user firmly in control.
 
-- documents
-- people
-- government forms
-- evidence
-- policy
+The service maintains a secure, verified understanding of a person, their family relationships and supporting evidence, then uses that knowledge to assist—not replace—the user when interacting with government and other organisations.
 
-and help users complete forms accurately while remaining completely transparent and under human control.
-
-The assistant should behave more like an experienced case worker than an autofill tool. It should never know more than the evidence supports, and the user should always know more than the assistant assumes.
+Rather than asking people to repeatedly complete paperwork, the copilot proposes answers, explains where they came from, highlights uncertainty, and allows the user to review and approve everything before submission.
 
 ---
 
 # Core Principles
 
+## Verified before trusted
+
+Information should not simply be stored—it should be capable of being verified.
+
+Where possible, documents and identity attributes are validated using trusted sources such as the Document Verification Service (DVS), Face Verification Service (FVS), or other authoritative systems.
+
+Every piece of information carries:
+
+- provenance
+- verification status
+- confidence
+- date of verification
+
+---
+
 ## Human in control
 
-The user always decides.
+The copilot never silently submits information. 
 
-The assistant may:
+Users remain responsible for:
 
-- suggest
-- explain
-- highlight
-- warn
+- Authentication
+- Multi-factor authentication
+- Legal declarations
+- Consent
+- Payments
+- Final submission
 
-The assistant never:
-
-- submits forms
-- bypasses authentication
-- completes declarations
-- makes legal decisions
-- fabricates information
+The AI performs the administrative work while the user retains legal control.
 
 ---
 
-## Evidence before AI
+## Evidence-backed answers
 
-AI should reason over trusted evidence.
+Every proposed answer should be explainable.
 
-Never over guesses.
+For every field the assistant can show:
 
-Every suggested value should be traceable back to one or more documents.
+- the proposed answer
+- which document it came from
+- when it was last verified
+- why it believes the answer is correct
+- its confidence
 
-The assistant should always be able to answer:
-
-> "Why did you suggest this?"
-
----
-
-## Explainability
-
-Every recommendation should include:
-
-- confidence
-- reasoning
-- supporting documents
-- conflicting evidence (if any)
-
-Users should never need to "trust the AI".
-
-The AI should earn trust through transparency.
+Nothing is "magic autofill."
 
 ---
 
-## Privacy by design
+## Identity is more than one person
 
-Personal documents remain under the user's control.
+Most important life events involve relationships.
 
-Where possible:
+The platform builds a verified model of:
 
-- processing occurs locally
-- only minimum required information is transmitted
-- documents are not retained unnecessarily
-- users can inspect every piece of stored information
+- Individuals
+- Parents
+- Children
+- Partners
+- Guardians
+- Carers
 
----
-
-## Government-agnostic
-
-The platform should not be designed specifically for one government agency.
-
-Instead it should understand:
-
-- pages
-- questions
-- evidence
-- policies
-
-allowing it to adapt to many government services.
+Relationships may evolve over time, but historical evidence still provides valuable context and reduces future administrative effort.
 
 ---
 
-## Accessibility
+# What makes this different?
 
-The assistant should reduce cognitive load.
+## Not a password manager
 
-It should:
+Password managers store values entered by the user.
 
-- simplify language
-- explain terminology
-- identify missing evidence
-- guide users through unfamiliar processes
+This platform stores verified attributes, supporting evidence and relationships that can be reused across many transactions.
 
 ---
 
-# Product Vision
+## Not a digital identity provider
 
-The browser extension is only the user interface.
+Today's digital identity systems generally answer one question:
 
-The real product is an evidence-driven reasoning platform.
+> "Is this person who they claim to be?"
 
-```
-                Browser Extension
-                        │
-                        ▼
-             Form Understanding Engine
-                        │
-                        ▼
-              AI Reasoning Engine
-                        │
-                        ▼
-               Canonical Profile
-                        │
-                        ▼
-                Evidence Engine
-                        │
-                        ▼
-             Document Extraction Engine
-```
+This platform answers a different question:
+
+> "Given everything we already know about this person, how can we help them complete this transaction accurately with the least possible effort?"
+
+Identity verification becomes an input into task completion, rather than the end goal.
 
 ---
 
-# User Experience
+## Not autonomous automation
 
-The ideal experience is:
+The objective is **not** to create a robot that submits forms unattended.
 
-1. Upload documents once.
-2. Review extracted information.
-3. Open any government form.
-4. Receive suggested answers.
-5. Review explanations.
-6. Accept or edit each suggestion.
-7. Submit with confidence.
+The objective is to create a trusted copilot that:
 
----
+- understands the task
+- proposes answers
+- explains its reasoning
+- requests approval
+- hands control back whenever appropriate
 
-# Long-term Goals
-
-## For citizens
-
-Reduce time, stress and mistakes.
-
-## For government
-
-Increase data quality.
-
-Reduce incomplete applications.
-
-Reduce manual review.
-
-Increase trust.
-
-## For software
-
-Create reusable infrastructure that can support thousands of forms without hard-coded rules.
+The human remains accountable.
 
 ---
 
-# Non-goals
+# Initial Use Case
 
-The project is **not** intended to:
+Government forms are an ideal starting point.
 
-- replace human judgement
-- impersonate users
-- bypass MFA
-- automate fraud
-- submit applications without approval
-- exploit websites
-- scrape personal information without consent
+A browser-based assistant can:
 
----
+1. Recognise the form being completed.
+2. Understand what each field is asking.
+3. Retrieve verified information.
+4. Match evidence to fields.
+5. Propose answers.
+6. Explain every recommendation.
+7. Pause for user approval.
+8. Hand control back for login, MFA, declarations and submission.
 
-# Success Measures
-
-A successful assistant should:
-
-- reduce completion time
-- reduce data entry
-- reduce rejected applications
-- increase user confidence
-- provide complete traceability
-- remain usable by non-technical users
+This delivers immediate value without requiring governments to redesign existing systems.
 
 ---
 
-# Open Questions
+# Longer-term Vision
 
-## Product
+Once a trusted personal data model exists, form filling becomes just one capability.
 
-- Is the primary customer:
-  - citizens?
-  - government agencies?
-  - schools?
-  - enterprise organisations?
+The same verified information can power:
 
-- Should the product eventually become SaaS?
-
-- Should it support offline operation?
-
----
-
-## AI
-
-- Should every suggestion come from an LLM?
-
-- Which reasoning should remain deterministic?
-
-- How should confidence be calculated?
-
-- How should conflicting evidence be presented?
-
----
-
-## Evidence
-
-- How long should evidence be retained?
-
-- Should users own their canonical profile?
-
-- Should evidence be synchronised across devices?
-
----
-
-## Browser
-
-- Chrome only?
-
-- Firefox?
-
-- Edge?
-
-- Mobile browsers?
-
----
-
-## Documents
-
-- OCR locally?
-
-- OCR in the cloud?
-
-- Which document types should become first-class citizens?
-
----
-
-## Security
-
-- Should encryption occur at rest?
-
-- End-to-end encryption?
-
-- Zero-knowledge architecture?
-
----
-
-## Identity
-
-- Should users authenticate?
-
-- Or should everything remain local?
-
----
-
-## Future
-
-Could this evolve beyond forms?
-
-Could the same evidence engine support:
-
-- digital wallets
-- benefit eligibility
+- proactive life-event services
+- verified credential sharing
+- employment and background checks
 - licence renewals
-- travel
-- taxation
-- healthcare
+- healthcare administration
+- grant applications
+- benefits
+- financial onboarding
 - insurance
+- education
+- any process requiring trusted personal information
 
-without changing the underlying architecture?
+For example:
+
+- A parent is notified that their child becomes eligible for preschool.
+- The application is already largely completed.
+- The supporting evidence is already verified.
+- The parent simply reviews and confirms.
+
+The administrative burden largely disappears.
 
 ---
 
-# Questions for Sam
+# Strategic Position
 
-## Product
+The long-term ambition is **not** to build another form-filling product.
 
-1. Is this primarily a **personal AI assistant**, or a platform that government agencies themselves could adopt?
+The ambition is to create a **Trusted Personal Data Layer** that sits between citizens and services.
 
-2. Is your ambition to help with **any** form, or only government forms?
+Today:
 
-3. Is the browser extension the product, or just the first client of a broader platform?
+```
+Citizen
+    ↓
+Every agency asks for information independently
+```
 
-## Trust
+Future:
 
-4. Should the assistant ever be allowed to auto-fill low-risk fields, or should every field require explicit approval?
+```
+Citizen
+    ↓
+Trusted Personal Data Copilot
+    ↓
+Government and commercial services
+```
 
-5. Should the assistant proactively warn when evidence is inconsistent, even if the form doesn't expose that conflict?
+Rather than repeatedly asking citizens to prove who they are and complete the same paperwork, organisations consume verified information—with the citizen's explicit permission—to help complete transactions faster, more accurately and with far less effort.
 
-## Profile
+---
 
-6. Is there a single canonical profile per person, or can a household have linked profiles (parents, children, guardians)?
+# Business Model
 
-7. How do you see changes over time? For example, if a family moves house, should the system retain historical addresses?
+The ultimate customer may not be the citizen.
 
-## Deployment
+While individuals may choose to use the service directly, the greater opportunity is for governments, banks, insurers and other trusted institutions to provide the capability as part of their existing digital experience.
 
-8. Is the long-term deployment model:
-   - Local-first?
-   - Hybrid?
-   - Cloud-first?
-   - Enterprise/on-premises?
+The value proposition is broader than convenience.
 
-## AI
+It includes:
 
-9. Where do you see deterministic rules ending and LLM reasoning beginning?
+- reduced application abandonment
+- fewer data entry errors
+- higher quality evidence
+- reduced contact centre demand
+- faster processing
+- improved accessibility
+- a significantly better citizen experience
 
-10. If the AI isn't confident enough, what should it do? Ask the user? Highlight missing evidence? Decline to suggest?
+The vision is not to replace government services.
+
+It is to become the trusted intelligence layer that makes interacting with them dramatically simpler.
