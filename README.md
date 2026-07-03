@@ -18,10 +18,9 @@ See [Vision.md](Vision.md).
 
 The current prototype demonstrates:
 
-- Browser automation using Playwright
 - Human-in-the-loop operation
 - Form field discovery
-- Mapping fields to a personal identity model
+- Mapping fields to a personal identity model (separate n8n workflow prototype)
 - Evidence-backed answer suggestions
 - User approval before data entry
 
