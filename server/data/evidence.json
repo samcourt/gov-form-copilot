@@ -1,50 +1,16 @@
 {
-  "student.givenName": {
-    "source": "Birth certificate",
-    "confidence": 0.99
-  },
-  "student.familyName": {
-    "source": "Birth certificate",
-    "confidence": 0.99
-  },
-  "student.dateOfBirth": {
-    "source": "Birth certificate",
-    "confidence": 0.98
-  },
-  "student.gender": {
-    "source": "Birth certificate",
-    "confidence": 0.95
-  },
-  "parent.givenName": {
-    "source": "Parent profile",
-    "confidence": 0.9
-  },
-  "parent.familyName": {
-    "source": "Parent profile",
-    "confidence": 0.9
-  },
-  "parent.email": {
-    "source": "Parent profile",
-    "confidence": 0.9
-  },
-  "parent.mobile": {
-    "source": "Parent profile",
-    "confidence": 0.9
-  },
-  "address.line1": {
-    "source": "Electricity bill",
-    "confidence": 0.93
-  },
-  "address.suburb": {
-    "source": "Electricity bill",
-    "confidence": 0.93
-  },
-  "address.state": {
-    "source": "Electricity bill",
-    "confidence": 0.93
-  },
-  "address.postcode": {
-    "source": "Electricity bill",
-    "confidence": 0.93
-  }
+  "student.givenName": { "source": "Birth certificate", "confidence": 0.99 },
+  "student.familyName": { "source": "Birth certificate", "confidence": 0.99 },
+  "student.preferredName": { "source": "Parent profile", "confidence": 0.8 },
+  "student.dateOfBirth": { "source": "Birth certificate", "confidence": 0.99 },
+  "student.gender": { "source": "Birth certificate", "confidence": 0.9 },
+  "parent.givenName": { "source": "Parent profile", "confidence": 0.95 },
+  "parent.familyName": { "source": "Parent profile", "confidence": 0.95 },
+  "parent.email": { "source": "Parent profile", "confidence": 0.9 },
+  "parent.mobile": { "source": "Parent profile", "confidence": 0.9 },
+  "address.line1": { "source": "Utility bill", "confidence": 0.95 },
+  "address.suburb": { "source": "Utility bill", "confidence": 0.95 },
+  "address.state": { "source": "Utility bill", "confidence": 0.95 },
+  "address.postcode": { "source": "Utility bill", "confidence": 0.95 },
+  "address.country": { "source": "Utility bill", "confidence": 0.9 }
 }

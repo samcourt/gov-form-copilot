@@ -1,17 +1,23 @@
 {
-  "name": "gov-form-copilot-extension",
-  "version": "0.1.0",
-  "private": true,
+  "name": "@gov-form-copilot/extension",
+  "version": "0.2.0",
   "type": "module",
   "scripts": {
     "dev": "vite build --watch",
-    "build": "vite build && node scripts/copy-manifest.js"
+    "build": "vite build && node scripts/copy-manifest.mjs",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
   },
   "dependencies": {
-    "@vitejs/plugin-react": "latest",
-    "vite": "latest",
-    "react": "latest",
-    "react-dom": "latest"
+    "@gov-form-copilot/shared": "file:../shared",
+    "@vitejs/plugin-react": "^4.3.2",
+    "vite": "^5.4.8",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "@types/chrome": "^0.0.270",
+    "@types/react": "^18.3.11",
+    "@types/react-dom": "^18.3.1",
+    "typescript": "^5.6.3"
+  }
 }

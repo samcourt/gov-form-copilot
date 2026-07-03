@@ -1,0 +1,31 @@
+{
+  "manifest_version": 3,
+  "name": "Gov Form Copilot",
+  "version": "0.2.0",
+  "permissions": ["activeTab", "scripting", "sidePanel", "tabs"],
+  "host_permissions": [
+    "https://*.enrol.education.nsw.gov.au/*",
+    "https://*.education.nsw.gov.au/*",
+    "http://localhost:8787/*"
+  ],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "side_panel": {
+    "default_path": "sidepanel.html"
+  },
+  "action": {
+    "default_title": "Gov Form Copilot"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://*.enrol.education.nsw.gov.au/*",
+        "https://*.education.nsw.gov.au/*"
+      ],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}

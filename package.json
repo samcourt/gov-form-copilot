@@ -1,0 +1,18 @@
+{
+  "name": "gov-form-copilot",
+  "version": "0.2.0",
+  "private": true,
+  "type": "module",
+  "workspaces": ["extension", "server", "shared"],
+  "scripts": {
+    "install:all": "npm install",
+    "dev:server": "npm --workspace server run dev",
+    "build:server": "npm --workspace server run build",
+    "build:extension": "npm --workspace extension run build",
+    "build": "npm run build:server && npm run build:extension",
+    "typecheck": "npm --workspaces run typecheck"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.3"
+  }
+}
