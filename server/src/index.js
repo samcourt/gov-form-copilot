@@ -72,7 +72,51 @@ app.get('/health', (req, res) => {
   res.json({ ok: true, service: 'gov-form-copilot-server' });
 });
 
-app.post('/suggest', (req, res) => {
+import express from "express";
+import cors from "cors";
+import { suggestAnswers } from "./pipelines/suggestAnswers.js";
+
+const app = express();
+const PORT = process.env.PORT || 8787;
+
+app.use(cors());
+app.use(express.json({ limit: "10mb" }));
+
+app.get("/health", (req, res) => {
+  res.json({ ok: true });
+});
+
+app.post("/api/suggestions", async (req, res) => {
+  try {
+    const { fields } = req.body;
+
+    if (!Array.isArray(fields)) {
+      return res.status(400).json({
+        error: "Request body must include fields array"
+      });
+    }
+
+    const suggestions = await suggestAnswers(fields);
+
+    res.json({
+      ok: true,
+      suggestions
+    });
+  } catch (error) {
+    console.error("Suggestion error:", error);
+
+    res.status(500).json({
+      ok: false,
+      error: error.message
+    });
+  }
+});
+
+app.listen(PORT, () => {
+  console.log(`Gov Form Copilot server running on http://localhost:${PORT}`);
+});
+
+/*app.post('/suggest', (req, res) => {
   const pageModel = req.body;
   const suggestions = {};
 
@@ -97,7 +141,7 @@ app.post('/suggest', (req, res) => {
   }
 
   res.json({ suggestions });
-});
+});*/
 
 const port = process.env.PORT || 8787;
 app.listen(port, () => {
