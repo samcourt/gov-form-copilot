@@ -1,7 +1,8 @@
 import cors from "cors";
 import dotenv from "dotenv";
 import express from "express";
-import suggestionsRouter from "./routes/suggestions.js";
+//import suggestionsRouter from "./routes/suggestions.js";
+import { suggestionsRouter } from "./routes/suggestions.js";
 
 dotenv.config();
 
@@ -15,7 +16,8 @@ app.get("/health", (_req, res) => {
   res.json({ ok: true, service: "gov-form-copilot-server" });
 });
 
-app.use("/api/suggestions", suggestionsRouter);
+//app.use("/api/suggestions", suggestionsRouter);
+app.use("/api", suggestionsRouter);
 
 app.listen(port, () => {
   console.log(`Gov Form Copilot API running at http://localhost:${port}`);

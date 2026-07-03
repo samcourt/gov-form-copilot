@@ -22,7 +22,8 @@
     {
       "matches": [
         "https://*.enrol.education.nsw.gov.au/*",
-        "https://*.education.nsw.gov.au/*"
+        "https://*.education.nsw.gov.au/*",
+        "file:///*"
       ],
       "js": ["content.js"],
       "run_at": "document_idle"

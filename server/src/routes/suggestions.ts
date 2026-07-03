@@ -1,33 +1,21 @@
 import { Router } from "express";
-import type { SuggestionsRequest, SuggestionsResponse } from "@gov-form-copilot/shared";
+import type { EvidenceMap, SuggestionsRequest, SuggestionsResponse } from "@gov-form-copilot/shared";
 import { suggestAnswers } from "../pipelines/suggestAnswers.js";
+import profile from "../../data/profile.json" with { type: "json" };
+import evidence from "../../data/evidence.json" with { type: "json" };
 
-const router = Router();
+export const suggestionsRouter = Router();
 
-router.post("/", async (req, res) => {
-  try {
-    const body = req.body as SuggestionsRequest;
+suggestionsRouter.post("/suggestions", (req, res) => {
+  const body = req.body as SuggestionsRequest;
 
-    if (!body.page || !Array.isArray(body.page.fields)) {
-      return res.status(400).json({
-        ok: false,
-        suggestions: {},
-        error: "Request body must include page.fields"
-      } satisfies SuggestionsResponse);
-    }
+  const suggestions = suggestAnswers({
+    fields: body.fields,
+    pageModel: body.pageModel,
+    profile: profile as Record<string, unknown>,
+    evidence: evidence as unknown as EvidenceMap
+  });
 
-    const suggestions = await suggestAnswers(body.page);
-
-    res.json({ ok: true, suggestions } satisfies SuggestionsResponse);
-  } catch (error) {
-    console.error("Suggestion error:", error);
-
-    res.status(500).json({
-      ok: false,
-      suggestions: {},
-      error: error instanceof Error ? error.message : "Unknown error"
-    } satisfies SuggestionsResponse);
-  }
+  const response: SuggestionsResponse = { suggestions };
+  res.json(response);
 });
-
-export default router;
