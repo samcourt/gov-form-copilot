@@ -1,0 +1,29 @@
+{
+  "id": "birth-certificate-001",
+  "type": "birth_certificate",
+  "label": "Birth Certificate",
+  "extractedAt": "2026-07-03T00:00:00.000Z",
+  "values": {
+    "student.givenName": {
+      "value": "Penelope",
+      "sourceId": "birth-certificate-001",
+      "sourceType": "birth_certificate",
+      "sourceLabel": "Birth Certificate",
+      "confidence": 0.99
+    },
+    "student.familyName": {
+      "value": "Court",
+      "sourceId": "birth-certificate-001",
+      "sourceType": "birth_certificate",
+      "sourceLabel": "Birth Certificate",
+      "confidence": 0.99
+    },
+    "student.dateOfBirth": {
+      "value": "2017-03-14",
+      "sourceId": "birth-certificate-001",
+      "sourceType": "birth_certificate",
+      "sourceLabel": "Birth Certificate",
+      "confidence": 0.98
+    }
+  }
+}

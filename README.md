@@ -1,1 +1,26 @@
-Sprint 2 scaffold. Models included. The scanner file is intentionally left as a placeholder because it is several hundred lines long and deserves its own reviewed commit.
+## Current Status (v0.1)
+
+### Working
+
+- ✅ Chrome Extension
+- ✅ Page scanning
+- ✅ Field application
+- ✅ Local API
+- ✅ Shared TypeScript models
+- ✅ Evidence Engine
+- ✅ Canonical Profile generation
+- ✅ Suggestion engine
+- ✅ Architecture documentation
+
+### In Progress
+
+- 🔄 Rich semantic page understanding
+- 🔄 Document ingestion
+- 🔄 AI reasoning
+
+### Planned
+
+- 📋 Evidence explorer
+- 📋 Multi-document conflict resolution
+- 📋 Policy reasoning
+- 📋 Conversation mode
