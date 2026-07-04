@@ -1,46 +1,72 @@
-import type { CanonicalProfile, EvidenceDocument, EvidenceValue, ProfileField } from "./types.js";
+import type {
+  CanonicalProfile,
+  EvidenceDocument,
+  EvidenceStatus,
+  EvidenceValue,
+  ProfileBuildResult,
+  ProfileField
+} from "@gov-form-copilot/shared";
+import { scoreEvidence } from "./authority.js";
+import { PROFILE_PATHS } from "./profilePaths.js";
 
-function emptyField<T = string>(): ProfileField<T> {
-  return { confidence: 0, evidence: [], conflicts: [] };
+function emptyField(path: string): ProfileField {
+  return { path, confidence: 0, status: "unsupported", evidence: [], conflicts: [], reason: "No supporting evidence found." };
 }
 
-function chooseBest<T = string>(values: EvidenceValue<T>[]): ProfileField<T> {
-  if (values.length === 0) return emptyField<T>();
-  const sorted = [...values].sort((a, b) => b.confidence - a.confidence);
-  const best = sorted[0];
-  const conflicts = sorted.filter((item) => item.value !== best.value);
-  return { value: best.value, confidence: best.confidence, evidence: sorted, conflicts };
+function valuesEqual(a: unknown, b: unknown): boolean {
+  return String(a ?? "").trim().toLowerCase() === String(b ?? "").trim().toLowerCase();
 }
 
-function collect<T = string>(docs: EvidenceDocument[], pathName: string): EvidenceValue<T>[] {
-  return docs
-    .map((doc) => doc.values[pathName] as EvidenceValue<T> | undefined)
-    .filter((value): value is EvidenceValue<T> => Boolean(value));
+function collect(docs: EvidenceDocument[], path: string): EvidenceValue[] {
+  return docs.map((doc) => doc.values[path]).filter((value): value is EvidenceValue => Boolean(value));
 }
 
-export function buildProfile(docs: EvidenceDocument[]): CanonicalProfile {
+function chooseBest(path: string, values: EvidenceValue[]): ProfileField {
+  if (values.length === 0) return emptyField(path);
+
+  const ranked = [...values].sort(
+    (a, b) => scoreEvidence(b.confidence, b.sourceType) - scoreEvidence(a.confidence, a.sourceType)
+  );
+
+  const best = ranked[0];
+  const conflicts = ranked.filter((item) => !valuesEqual(item.value, best.value));
+  const combinedConfidence = scoreEvidence(best.confidence, best.sourceType);
+
+  const status: EvidenceStatus =
+    conflicts.length > 0 ? "conflicted" : combinedConfidence >= 0.8 ? "verified" : "needs_review";
+
   return {
-    student: {
-      givenName: chooseBest(collect(docs, "student.givenName")),
-      familyName: chooseBest(collect(docs, "student.familyName")),
-      middleName: chooseBest(collect(docs, "student.middleName")),
-      preferredName: chooseBest(collect(docs, "student.preferredName")),
-      dateOfBirth: chooseBest(collect(docs, "student.dateOfBirth")),
-      gender: chooseBest(collect(docs, "student.gender"))
-    },
-    parent: {
-      givenName: chooseBest(collect(docs, "parent.givenName")),
-      familyName: chooseBest(collect(docs, "parent.familyName")),
-      email: chooseBest(collect(docs, "parent.email")),
-      mobile: chooseBest(collect(docs, "parent.mobile"))
-    },
-    address: {
-      line1: chooseBest(collect(docs, "address.line1")),
-      suburb: chooseBest(collect(docs, "address.suburb")),
-      state: chooseBest(collect(docs, "address.state")),
-      postcode: chooseBest(collect(docs, "address.postcode")),
-      country: chooseBest(collect(docs, "address.country")),
-      fullAddress: chooseBest(collect(docs, "address.fullAddress"))
-    }
+    path,
+    value: best.value,
+    confidence: Number(combinedConfidence.toFixed(3)),
+    status,
+    evidence: ranked,
+    conflicts,
+    reason: conflicts.length > 0
+      ? `Selected ${best.sourceLabel}, but found conflicting evidence.`
+      : `Selected highest-ranked evidence from ${best.sourceLabel}.`
   };
+}
+
+function setPath(target: Record<string, unknown>, dottedPath: string, value: unknown): void {
+  const parts = dottedPath.split(".");
+  let node = target;
+  for (const part of parts.slice(0, -1)) {
+    node[part] ??= {};
+    node = node[part] as Record<string, unknown>;
+  }
+  node[parts[parts.length - 1]] = value;
+}
+
+export function buildProfile(docs: EvidenceDocument[]): ProfileBuildResult {
+  const profile = {} as CanonicalProfile;
+  let conflictCount = 0;
+
+  for (const path of PROFILE_PATHS) {
+    const field = chooseBest(path, collect(docs, path));
+    if (field.conflicts.length > 0) conflictCount += 1;
+    setPath(profile as unknown as Record<string, unknown>, path, field);
+  }
+
+  return { profile, documents: docs.length, fields: PROFILE_PATHS.length, conflicts: conflictCount, generatedAt: new Date().toISOString() };
 }

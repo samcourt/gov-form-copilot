@@ -7,8 +7,8 @@ export const profileRouter = Router();
 profileRouter.get("/profile", async (_req, res, next) => {
   try {
     const evidenceDocuments = await loadEvidenceDocuments();
-    const profile = buildProfile(evidenceDocuments);
-    res.json({ ok: true, profile, evidenceDocuments });
+    const result = buildProfile(evidenceDocuments);
+    res.json({ ok: true, ...result, evidenceDocuments });
   } catch (error) {
     next(error);
   }

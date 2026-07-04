@@ -1,0 +1,13 @@
+{
+  "id": "parent-declaration-001",
+  "type": "parent_declaration",
+  "label": "Parent Declaration",
+  "extractedAt": "2026-07-03T00:00:00.000Z",
+  "values": {
+    "student.gender": {"value":"Female","sourceId":"parent-declaration-001","sourceType":"parent_declaration","sourceLabel":"Parent Declaration","confidence":0.9},
+    "student.residencyStatus": {"value":"Australian Citizen","sourceId":"parent-declaration-001","sourceType":"parent_declaration","sourceLabel":"Parent Declaration","confidence":0.75},
+    "student.aboriginalOrTorresStraitIslander": {"value":"No","sourceId":"parent-declaration-001","sourceType":"parent_declaration","sourceLabel":"Parent Declaration","confidence":0.75},
+    "student.languageOtherThanEnglishAtHome": {"value":"No","sourceId":"parent-declaration-001","sourceType":"parent_declaration","sourceLabel":"Parent Declaration","confidence":0.75},
+    "student.attendedAnotherSchool": {"value":"No","sourceId":"parent-declaration-001","sourceType":"parent_declaration","sourceLabel":"Parent Declaration","confidence":0.75}
+  }
+}

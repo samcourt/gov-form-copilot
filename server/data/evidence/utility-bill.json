@@ -4,47 +4,11 @@
   "label": "Utility Bill",
   "extractedAt": "2026-07-03T00:00:00.000Z",
   "values": {
-    "address.line1": {
-      "value": "12 Example Street",
-      "sourceId": "utility-bill-001",
-      "sourceType": "utility_bill",
-      "sourceLabel": "Utility Bill",
-      "confidence": 0.92
-    },
-    "address.suburb": {
-      "value": "Surry Hills",
-      "sourceId": "utility-bill-001",
-      "sourceType": "utility_bill",
-      "sourceLabel": "Utility Bill",
-      "confidence": 0.92
-    },
-    "address.state": {
-      "value": "NSW",
-      "sourceId": "utility-bill-001",
-      "sourceType": "utility_bill",
-      "sourceLabel": "Utility Bill",
-      "confidence": 0.92
-    },
-    "address.postcode": {
-      "value": "2010",
-      "sourceId": "utility-bill-001",
-      "sourceType": "utility_bill",
-      "sourceLabel": "Utility Bill",
-      "confidence": 0.92
-    },
-    "address.country": {
-      "value": "Australia",
-      "sourceId": "utility-bill-001",
-      "sourceType": "utility_bill",
-      "sourceLabel": "Utility Bill",
-      "confidence": 0.90
-    },
-    "address.fullAddress": {
-      "value": "12 Example Street, Surry Hills NSW 2010, Australia",
-      "sourceId": "utility-bill-001",
-      "sourceType": "utility_bill",
-      "sourceLabel": "Utility Bill",
-      "confidence": 0.92
-    }
+    "address.line1": {"value":"12 Example Street","sourceId":"utility-bill-001","sourceType":"utility_bill","sourceLabel":"Utility Bill","confidence":0.92},
+    "address.suburb": {"value":"Surry Hills","sourceId":"utility-bill-001","sourceType":"utility_bill","sourceLabel":"Utility Bill","confidence":0.92},
+    "address.state": {"value":"NSW","sourceId":"utility-bill-001","sourceType":"utility_bill","sourceLabel":"Utility Bill","confidence":0.92},
+    "address.postcode": {"value":"2010","sourceId":"utility-bill-001","sourceType":"utility_bill","sourceLabel":"Utility Bill","confidence":0.92},
+    "address.country": {"value":"Australia","sourceId":"utility-bill-001","sourceType":"utility_bill","sourceLabel":"Utility Bill","confidence":0.9},
+    "address.fullAddress": {"value":"12 Example Street, Surry Hills NSW 2010, Australia","sourceId":"utility-bill-001","sourceType":"utility_bill","sourceLabel":"Utility Bill","confidence":0.92}
   }
 }

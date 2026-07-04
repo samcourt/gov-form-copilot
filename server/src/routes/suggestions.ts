@@ -1,21 +1,26 @@
 import { Router } from "express";
-import type { EvidenceMap, SuggestionsRequest, SuggestionsResponse } from "@gov-form-copilot/shared";
+import type { SuggestionsRequest, SuggestionsResponse } from "@gov-form-copilot/shared";
+import { buildProfile } from "../evidence/profileBuilder.js";
+import { loadEvidenceDocuments } from "../evidence/evidenceStore.js";
 import { suggestAnswers } from "../pipelines/suggestAnswers.js";
-import profile from "../../data/profile.json" with { type: "json" };
-import evidence from "../../data/evidence.json" with { type: "json" };
 
 export const suggestionsRouter = Router();
 
-suggestionsRouter.post("/suggestions", (req, res) => {
-  const body = req.body as SuggestionsRequest;
+suggestionsRouter.post("/suggestions", async (req, res, next) => {
+  try {
+    const body = req.body as SuggestionsRequest;
+    const evidenceDocuments = await loadEvidenceDocuments();
+    const profileResult = buildProfile(evidenceDocuments);
 
-  const suggestions = suggestAnswers({
-    fields: body.fields,
-    pageModel: body.pageModel,
-    profile: profile as Record<string, unknown>,
-    evidence: evidence as unknown as EvidenceMap
-  });
+    const suggestions = suggestAnswers({
+      fields: body.fields,
+      pageModel: body.pageModel,
+      profile: profileResult.profile as unknown as Record<string, unknown>
+    });
 
-  const response: SuggestionsResponse = { suggestions };
-  res.json(response);
+    const response: SuggestionsResponse = { suggestions };
+    res.json(response);
+  } catch (error) {
+    next(error);
+  }
 });

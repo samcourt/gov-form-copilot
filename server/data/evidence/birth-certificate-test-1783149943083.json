@@ -1,0 +1,45 @@
+{
+  "id": "birth-certificate-test-1783149943083",
+  "type": "birth_certificate",
+  "label": "Birth Certificate Test",
+  "extractedAt": "2026-07-04T07:25:43.083Z",
+  "uploadedAt": "2026-07-04T07:25:43.083Z",
+  "values": {
+    "student.givenName": {
+      "value": "Penelope Family Name",
+      "sourceId": "birth-certificate-test-1783149943083",
+      "sourceType": "birth_certificate",
+      "sourceLabel": "Birth Certificate Test",
+      "confidence": 0.7,
+      "extractedAt": "2026-07-04T07:25:43.083Z",
+      "rawText": "Given Names: Penelope\nFamily Name: Court\nDate of Birth: 14/03/2017\nCountry of Birth: Australia"
+    },
+    "student.familyName": {
+      "value": "Court Date of Birth",
+      "sourceId": "birth-certificate-test-1783149943083",
+      "sourceType": "birth_certificate",
+      "sourceLabel": "Birth Certificate Test",
+      "confidence": 0.7,
+      "extractedAt": "2026-07-04T07:25:43.083Z",
+      "rawText": "Given Names: Penelope\nFamily Name: Court\nDate of Birth: 14/03/2017\nCountry of Birth: Australia"
+    },
+    "student.dateOfBirth": {
+      "value": "2017-03-14",
+      "sourceId": "birth-certificate-test-1783149943083",
+      "sourceType": "birth_certificate",
+      "sourceLabel": "Birth Certificate Test",
+      "confidence": 0.7,
+      "extractedAt": "2026-07-04T07:25:43.083Z",
+      "rawText": "Given Names: Penelope\nFamily Name: Court\nDate of Birth: 14/03/2017\nCountry of Birth: Australia"
+    },
+    "student.countryOfBirth": {
+      "value": "Australia",
+      "sourceId": "birth-certificate-test-1783149943083",
+      "sourceType": "birth_certificate",
+      "sourceLabel": "Birth Certificate Test",
+      "confidence": 0.7,
+      "extractedAt": "2026-07-04T07:25:43.083Z",
+      "rawText": "Given Names: Penelope\nFamily Name: Court\nDate of Birth: 14/03/2017\nCountry of Birth: Australia"
+    }
+  }
+}
