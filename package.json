@@ -3,13 +3,14 @@
   "version": "0.2.0",
   "private": true,
   "type": "module",
-  "workspaces": ["extension", "server", "shared"],
+  "workspaces": ["extension", "server", "shared", "web"],
   "scripts": {
     "install:all": "npm install",
     "dev:server": "npm --workspace server run dev",
     "build:server": "npm --workspace server run build",
     "build:extension": "npm --workspace extension run build",
-    "build": "npm run build:server && npm run build:extension",
+    "build:web": "npm --workspace web run build",
+    "build": "npm run build:server && npm run build:extension && npm run build:web",
     "typecheck": "npm --workspaces run typecheck"
   },
   "devDependencies": {

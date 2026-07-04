@@ -1,11 +1,18 @@
-import type { EvidenceMap, FieldModel, FieldOption, FieldSuggestion, PageModel } from "@gov-form-copilot/shared";
+import type {
+  EvidenceMap,
+  FieldModel,
+  FieldOption,
+  FieldSuggestion,
+  PageModel,
+  ProfileField
+} from "@gov-form-copilot/shared";
 import { matchField } from "../matchers/matcherPipeline.js";
 
 interface SuggestAnswersInput {
   fields?: FieldModel[];
   pageModel?: PageModel;
   profile: Record<string, unknown>;
-  evidence: EvidenceMap;
+  evidence?: EvidenceMap;
 }
 
 export function suggestAnswers(input: SuggestAnswersInput): Record<string, FieldSuggestion> {
@@ -18,31 +25,31 @@ export function suggestAnswers(input: SuggestAnswersInput): Record<string, Field
     const match = matchField(field);
     if (!match) continue;
 
-    const rawValue = getPath(input.profile, match.profilePath);
+    const profileField = getPath(input.profile, match.profilePath) as ProfileField | undefined;
+    const rawValue = profileField?.value ?? getPath(input.profile, match.profilePath);
+
     if (rawValue == null || rawValue === "") continue;
 
     const formatted = formatValue(String(rawValue), field, match.profilePath);
     if (formatted == null || formatted === "") continue;
 
-    const evidenceItem = input.evidence[match.profilePath] ?? {
-      source: "Profile",
-      confidence: 0.75,
-      value: String(rawValue)
-    };
+    const fallbackEvidence = input.evidence?.[match.profilePath];
+    const evidenceConfidence = profileField?.confidence ?? fallbackEvidence?.confidence ?? 0.75;
+    const source = profileField?.evidence?.[0]?.sourceLabel ?? fallbackEvidence?.sourceLabel ?? "Profile";
 
     suggestions[field.fieldId] = {
       fieldId: field.fieldId,
       value: formatted,
-      confidence: evidenceItem.confidence * match.confidence,
-      source: evidenceItem.source,
+      confidence: Number((evidenceConfidence * match.confidence).toFixed(3)),
+      source,
       reason: match.reason,
       evidence: [
-        {
-          source: evidenceItem.source,
-          confidence: evidenceItem.confidence,
+        ...(profileField?.evidence ?? fallbackEvidence ? [fallbackEvidence].filter(Boolean) : []).map((item) => ({
+          source: item!.sourceLabel,
+          confidence: item!.confidence,
           profilePath: match.profilePath,
-          reason: `Profile path ${match.profilePath}`
-        },
+          reason: `Evidence from ${item!.sourceLabel}`
+        })),
         {
           source: "Form scanner",
           confidence: match.confidence,
@@ -58,6 +65,7 @@ export function suggestAnswers(input: SuggestAnswersInput): Record<string, Field
 
 function flattenPageFields(pageModel?: PageModel): FieldModel[] {
   if (!pageModel) return [];
+
   return pageModel.sections.flatMap((section) =>
     section.fields.map((field) => ({
       ...field,
@@ -71,6 +79,7 @@ function getPath(obj: Record<string, unknown>, dottedPath: string): unknown {
     if (acc && typeof acc === "object" && key in acc) {
       return (acc as Record<string, unknown>)[key];
     }
+
     return undefined;
   }, obj);
 }
@@ -94,8 +103,6 @@ function formatOptionValue(value: string, field: FieldModel): string | null {
   const valueText = value.toLowerCase();
 
   if (optionText.includes(valueText)) return "checked";
-
-  // Common yes/no patterns
   if (["no", "false"].includes(valueText) && /^no\b/.test(optionText)) return "checked";
   if (["yes", "true"].includes(valueText) && /^yes\b/.test(optionText)) return "checked";
 
@@ -130,10 +137,14 @@ function parseIsoDate(value: string):
 
   const [, year, month, day] = match;
   const date = new Date(Date.UTC(Number(year), Number(month) - 1, Number(day)));
-  const monthName = new Intl.DateTimeFormat("en-AU", { month: "long", timeZone: "UTC" }).format(date);
-  const monthShort = new Intl.DateTimeFormat("en-AU", { month: "short", timeZone: "UTC" }).format(date);
 
-  return { year, month, day, monthName, monthShort };
+  return {
+    year,
+    month,
+    day,
+    monthName: new Intl.DateTimeFormat("en-AU", { month: "long", timeZone: "UTC" }).format(date),
+    monthShort: new Intl.DateTimeFormat("en-AU", { month: "short", timeZone: "UTC" }).format(date)
+  };
 }
 
 function inferDatePart(field: FieldModel): "day" | "month" | "year" | null {
