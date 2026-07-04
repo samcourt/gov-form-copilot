@@ -23,6 +23,7 @@ export function buildProfile(docs: EvidenceDocument[]): CanonicalProfile {
     student: {
       givenName: chooseBest(collect(docs, "student.givenName")),
       familyName: chooseBest(collect(docs, "student.familyName")),
+      middleName: chooseBest(collect(docs, "student.middleName")),
       preferredName: chooseBest(collect(docs, "student.preferredName")),
       dateOfBirth: chooseBest(collect(docs, "student.dateOfBirth")),
       gender: chooseBest(collect(docs, "student.gender"))

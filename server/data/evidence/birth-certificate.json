@@ -24,6 +24,13 @@
       "sourceType": "birth_certificate",
       "sourceLabel": "Birth Certificate",
       "confidence": 0.98
+    },
+    "student.countryOfBirth": {
+      "value": "Australia",
+      "sourceId": "birth-certificate-001",
+      "sourceType": "birth_certificate",
+      "sourceLabel": "Birth Certificate",
+      "confidence": 0.95
     }
   }
 }

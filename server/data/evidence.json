@@ -1,16 +1,25 @@
 {
   "student.givenName": { "source": "Birth certificate", "confidence": 0.99 },
+  "student.middleName": { "source": "Birth certificate", "confidence": 0.80 },
   "student.familyName": { "source": "Birth certificate", "confidence": 0.99 },
-  "student.preferredName": { "source": "Parent profile", "confidence": 0.8 },
+  "student.preferredName": { "source": "Profile", "confidence": 0.60 },
   "student.dateOfBirth": { "source": "Birth certificate", "confidence": 0.99 },
-  "student.gender": { "source": "Birth certificate", "confidence": 0.9 },
-  "parent.givenName": { "source": "Parent profile", "confidence": 0.95 },
-  "parent.familyName": { "source": "Parent profile", "confidence": 0.95 },
-  "parent.email": { "source": "Parent profile", "confidence": 0.9 },
-  "parent.mobile": { "source": "Parent profile", "confidence": 0.9 },
-  "address.line1": { "source": "Utility bill", "confidence": 0.95 },
-  "address.suburb": { "source": "Utility bill", "confidence": 0.95 },
-  "address.state": { "source": "Utility bill", "confidence": 0.95 },
-  "address.postcode": { "source": "Utility bill", "confidence": 0.95 },
-  "address.country": { "source": "Utility bill", "confidence": 0.9 }
+  "student.gender": { "source": "Profile", "confidence": 0.90 },
+  "student.countryOfBirth": { "source": "Birth certificate", "confidence": 0.95 },
+  "student.residencyStatus": { "source": "Birth certificate / parent declaration", "confidence": 0.75 },
+  "student.aboriginalOrTorresStraitIslander": { "source": "Parent declaration", "confidence": 0.75 },
+  "student.languageOtherThanEnglishAtHome": { "source": "Parent declaration", "confidence": 0.75 },
+  "student.attendedAnotherSchool": { "source": "Parent declaration", "confidence": 0.75 },
+
+  "parent.givenName": { "source": "Profile", "confidence": 0.85 },
+  "parent.familyName": { "source": "Profile", "confidence": 0.85 },
+  "parent.email": { "source": "Profile", "confidence": 0.85 },
+  "parent.mobile": { "source": "Profile", "confidence": 0.85 },
+
+  "address.line1": { "source": "Utility bill", "confidence": 0.92 },
+  "address.suburb": { "source": "Utility bill", "confidence": 0.92 },
+  "address.state": { "source": "Utility bill", "confidence": 0.92 },
+  "address.postcode": { "source": "Utility bill", "confidence": 0.92 },
+  "address.country": { "source": "Utility bill", "confidence": 0.90 },
+  "address.fullAddress": { "source": "Utility bill", "confidence": 0.92 }
 }

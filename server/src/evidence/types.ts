@@ -30,6 +30,7 @@ export interface CanonicalProfile {
   student: {
     givenName: ProfileField;
     familyName: ProfileField;
+    middleName: ProfileField;
     preferredName: ProfileField;
     dateOfBirth: ProfileField;
     gender: ProfileField;

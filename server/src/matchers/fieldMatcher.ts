@@ -16,11 +16,12 @@ const RULES: Array<{ profilePath: string; terms: string[] }> = [
   { profilePath: "parent.familyName", terms: ["parent family name", "carer family name", "guardian family name"] },
   { profilePath: "parent.email", terms: ["email", "email address"] },
   { profilePath: "parent.mobile", terms: ["mobile", "phone", "telephone", "contact number"] },
-  { profilePath: "address.line1", terms: ["address line 1", "residential address", "street address", "home address"] },
-  { profilePath: "address.suburb", terms: ["suburb", "town"] },
+  { profilePath: "address.postcode", terms: ["postcode", "postal code", "zip code"] },
+  { profilePath: "address.suburb", terms: ["suburb", "town", "city"] },
   { profilePath: "address.state", terms: ["state"] },
-  { profilePath: "address.postcode", terms: ["postcode", "postal code"] },
-  { profilePath: "address.country", terms: ["country"] }
+  { profilePath: "address.country", terms: ["country"] },
+  { profilePath: "address.line1", terms: ["street address", "address line 1", "street number", "street name"] },
+  { profilePath: "address.fullAddress", terms: ["residential address", "home address", "full address"] }
 ];
 
 function normalise(text = ""): string {
@@ -28,10 +29,12 @@ function normalise(text = ""): string {
 }
 
 export function matchField(field: FieldModel): FieldMatch | null {
-  const haystack = normalise(
-    [field.section, field.label, field.name, field.fieldId, field.placeholder, field.helpText, field.fieldType]
-      .filter(Boolean)
-      .join(" ")
+  const primary = normalise(
+    [field.label, field.name, field.fieldId, field.placeholder].filter(Boolean).join(" ")
+  );
+
+  const secondary = normalise(
+    [field.section, field.helpText, field.fieldType].filter(Boolean).join(" ")
   );
 
   let best: FieldMatch | null = null;
@@ -39,7 +42,12 @@ export function matchField(field: FieldModel): FieldMatch | null {
   for (const rule of RULES) {
     for (const term of rule.terms) {
       const normalisedTerm = normalise(term);
-      const score = haystack.includes(normalisedTerm) ? normalisedTerm.split(" ").length : 0;
+      const score =
+        primary.includes(normalisedTerm)
+          ? normalisedTerm.split(" ").length * 10
+          : secondary.includes(normalisedTerm)
+            ? normalisedTerm.split(" ").length
+            : 0;
       if (score > 0 && (!best || score > best.score)) {
         best = { profilePath: rule.profilePath, matchedTerm: term, score };
       }
