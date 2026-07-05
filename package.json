@@ -1,15 +1,18 @@
 {
   "name": "gov-form-copilot",
-  "version": "0.2.0",
+  "version": "0.5.0-alpha",
   "private": true,
   "type": "module",
-  "workspaces": ["extension", "server", "shared"],
+  "workspaces": ["extension", "server", "shared", "web"],
   "scripts": {
     "install:all": "npm install",
-    "dev:server": "npm --workspace server run dev",
-    "build:server": "npm --workspace server run build",
-    "build:extension": "npm --workspace extension run build",
-    "build": "npm run build:server && npm run build:extension",
+    "dev:server": "npm --workspace=@gov-form-copilot/server run dev",
+    "dev:web": "npm --workspace=@gov-form-copilot/web run dev",
+    "build:shared": "npm --workspace=@gov-form-copilot/shared run build",
+    "build:server": "npm --workspace=@gov-form-copilot/server run build",
+    "build:extension": "npm --workspace=@gov-form-copilot/extension run build",
+    "build:web": "npm --workspace=@gov-form-copilot/web run build",
+    "build": "npm run build:shared && npm run build:server && npm run build:extension && npm run build:web",
     "typecheck": "npm --workspaces run typecheck"
   },
   "devDependencies": {
