@@ -1,63 +1,83 @@
 # Bounded Services
 
-## Semantic Scanner
+## Profile Web App
 
-Responsible for converting the live DOM into a semantic `PageModel`.
-
-Owns:
-
-- field detection
-- section detection
-- label extraction
-- safety classification
-- field metadata
-- apply behaviour
-
-## Document Ingestion
-
-Responsible for accepting new evidence inputs.
+Responsible for profile and evidence management.
 
 Owns:
 
-- structured evidence import
-- extracted text import
-- future file upload
-- future OCR orchestration
-- future LLM extraction orchestration
+- upload UI
+- evidence library UI
+- profile viewer
+- future conflict resolution UI
+
+Does not own:
+
+- browser page scanning
+- applying values into external forms
+
+## Chrome Extension
+
+Responsible for in-form assistance.
+
+Owns:
+
+- content script scanning
+- side panel suggestions
+- applying approved values
+
+Does not own:
+
+- document upload
+- household profile management
+- evidence conflict resolution
+
+## Server API
+
+Responsible for domain operations.
+
+Owns:
+
+- asset upload and storage
+- evidence document persistence
+- document ingestion
+- canonical profile building
+- suggestion generation
+
+## Shared Models
+
+Responsible for cross-package type contracts.
+
+Owns:
+
+- `EvidenceAsset`
+- `EvidenceDocument`
+- `CanonicalProfile`
+- `PageModel`
+- `FieldModel`
+- `FieldSuggestion`
+
+Rule: if the same concept crosses more than one package boundary, it belongs in `shared`.
 
 ## Evidence Engine
 
-Responsible for storing and reconciling evidence.
+Responsible for deciding which evidence-backed values are currently canonical.
 
 Owns:
 
-- EvidenceDocument
-- EvidenceValue
-- evidence confidence
 - authority ranking
-- conflict detection
-- canonical profile generation
+- confidence scoring
+- supporting evidence
+- conflicting evidence
+- unsupported fields
 
-## Decision Engine
+## Document Ingestion
 
-Responsible for deciding what to suggest.
-
-Owns:
-
-- field-to-profile matching
-- confidence combination
-- evidence attribution
-- policy-aware reasoning
-- manual handoff decisions
-
-## Extension UI
-
-Responsible for user interaction.
+Responsible for turning inputs into structured evidence.
 
 Owns:
 
-- scan button
-- suggestion cards
-- evidence display
-- apply buttons
-- user feedback
+- extracted text ingestion
+- structured value ingestion
+- rule-based extraction
+- future OCR / LLM extraction pipeline
