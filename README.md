@@ -1,218 +1,101 @@
 # Gov Form Copilot
 
-AI-assisted browser copilot for completing complex government forms using verified personal information while keeping the user in control.
+Gov Form Copilot is an evidence-backed assistant for completing government forms.
 
-> ⚠️ Prototype
->
-> This project is an experimental proof-of-concept. It does **not** bypass authentication or submit forms autonomously. Users remain responsible for login, MFA, declarations and final submission.
+It has two user-facing surfaces:
 
----
+- **Profile Web App** — upload and manage evidence, inspect extracted facts, and review the canonical profile.
+- **Chrome Extension** — scan a live government form, suggest evidence-backed answers, and let the user apply approved values.
 
-# Vision
+## Current version
 
-See [Vision.md](Vision.md).
+**v0.5 alpha**
 
----
+Core capabilities:
 
-# Current Prototype
+- Semantic page scanner
+- Evidence document model
+- Canonical profile builder
+- Document ingestion endpoints
+- Evidence asset library
+- Profile web app
+- Chrome extension side panel
+- Shared TypeScript models
 
-The current prototype demonstrates:
+## Architecture
 
-- Human-in-the-loop operation
-- Form field discovery
-- Mapping fields to a personal identity model (separate n8n workflow prototype)
-- Evidence-backed answer suggestions
-- User approval before data entry
-
-Currently targeting:
-
-- NSW Education Online Enrolment (eHub)
-
----
-
-# Prerequisites
-
-Install:
-
-- Node.js 22+
-- npm
-- Docker Desktop (optional for n8n workflow prototype)
-
-Verify:
-
-```bash
-node --version
-npm --version
+```text
+Evidence files
+  ↓
+Evidence Asset Library
+  ↓
+Document Ingestion
+  ↓
+Evidence Documents
+  ↓
+Evidence Engine
+  ↓
+Canonical Profile
+  ↓
+Decision / Suggestion Engine
+  ↓
+Browser Extension
+  ↓
+Government form
 ```
 
----
+## Repository structure
 
-# Installation
-
-Clone the repository:
-
-```bash
-git clone <repo>
-cd gov-form-copilot
+```text
+extension/   Chrome extension for scanning and applying suggestions
+server/      Express API for evidence, profile, ingestion and suggestions
+shared/      Shared TypeScript models
+web/         Profile & Evidence Portal
+docs/        Architecture, API and decision records
 ```
 
-Install dependencies:
+## Local development
 
-```bash
+```powershell
 npm install
+npm run build
+npm run dev:server
+npm run dev:web
 ```
 
-Install Playwright browsers:
+Open:
 
-```bash
-npx playwright install
+```text
+http://localhost:5174
 ```
 
-Copy the environment file:
+API:
 
-```bash
-cp .env.example .env
+```text
+http://localhost:8787
 ```
 
----
+Useful checks:
 
-# Running
-
-## 1. Analyse a page
-
-```bash
-npm run analyse
+```text
+http://localhost:8787/health
+http://localhost:8787/api/assets
+http://localhost:8787/api/evidence
+http://localhost:8787/api/profile
 ```
 
-The browser opens.
+## Development principles
 
-1. Log in manually.
-2. Complete MFA.
-3. Return to the terminal.
-4. Press Enter.
+- The user remains in control.
+- The browser extension stays thin.
+- The canonical profile is derived from evidence.
+- Every suggestion should be traceable to evidence.
+- Original uploaded files and extracted facts are separate concepts.
+- Shared models are the source of truth for cross-package types.
 
-Outputs:
+## Current limitations
 
-```
-out/page-analysis.json
-```
-
----
-
-## 2. Generate proposed answers
-
-```bash
-npm run propose
-```
-
-Outputs:
-
-```
-out/proposed-values.json
-```
-
----
-
-## 3. Review approvals
-
-Edit:
-
-```
-out/approvals.json
-```
-
-Approve or reject each proposed field.
-
----
-
-## 4. Fill approved fields
-
-```bash
-npm run fill
-```
-
-The assistant fills only approved fields.
-
-It will never automatically:
-
-- enter passwords
-- complete MFA
-- tick legal declarations
-- submit the form
-
----
-
-# Project Structure
-
-```
-src/
-    1-analyse-page.ts
-    2-propose-answers.ts
-    3-fill-approved-fields.ts
-
-data/
-    profile.json
-    evidence/
-
-out/
-    page-analysis.json
-    proposed-values.json
-    approvals.json
-```
-
----
-
-# Design Principles
-
-- Human in control
-- Verified data
-- Explainable AI
-- Evidence-backed decisions
-- No autonomous submission
-
----
-
-# Roadmap
-
-- [ ] Browser extension
-- [ ] Better field understanding
-- [ ] Identity graph
-- [ ] Document verification integration
-- [ ] Confidence scoring
-- [ ] Evidence provenance
-- [ ] Audit trail
-- [ ] Support multiple government services
-
----
-
-# Licence
-
-TBD
-
-
-## Current Status (v0.1)
-
-### Working
-
-- ✅ Chrome Extension
-- ✅ Page scanning
-- ✅ Field application
-- ✅ Local API
-- ✅ Shared TypeScript models
-- ✅ Evidence Engine
-- ✅ Canonical Profile generation
-- ✅ Suggestion engine
-- ✅ Architecture documentation
-
-### In Progress
-
-- 🔄 Rich semantic page understanding
-- 🔄 Document ingestion
-- 🔄 AI reasoning
-
-### Planned
-
-- 📋 Evidence explorer
-- 📋 Multi-document conflict resolution
-- 📋 Policy reasoning
-- 📋 Conversation mode
+- File upload stores original assets but does not yet run OCR.
+- Text extraction is rule-based and basic.
+- Conflict resolution is detected but not yet resolved in the UI.
+- Some custom form controls still need stronger apply adapters.

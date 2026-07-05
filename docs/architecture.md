@@ -1,36 +1,92 @@
-# Gov Form Copilot Architecture
+# Architecture
 
-## Vision
+Gov Form Copilot is an evidence-backed form assistance platform.
 
-Gov Form Copilot is an AI-assisted platform that helps people complete complex government forms with human oversight. The browser extension never submits data automatically. Users review every suggested value.
+## System overview
 
-## High-level Architecture
-
+```text
+Profile Web App
+  - upload files
+  - review evidence
+  - inspect profile
+        ↓
+Server API
+  - assets
+  - ingestion
+  - evidence
+  - profile
+  - suggestions
+        ↓
+Shared Domain Models
+  - EvidenceAsset
+  - EvidenceDocument
+  - CanonicalProfile
+  - PageModel
+  - FieldSuggestion
+        ↓
+Chrome Extension
+  - scan page
+  - show suggestions
+  - apply values
 ```
-Documents
-    │
-    ▼
-Evidence Extraction
-    │
-    ▼
-Evidence Store
-    │
-    ▼
-Canonical Profile
-    │
-    ▼
-AI Reasoning Engine
-    │
-    ▼
-Browser Extension
-    │
-    ▼
-Government Web Form
+
+## Data flow
+
+```text
+PDF/JPG/PNG/TXT upload
+  ↓
+EvidenceAsset
+  ↓
+OCR / extraction later
+  ↓
+EvidenceDocument
+  ↓
+Evidence Engine
+  ↓
+CanonicalProfile
+  ↓
+Suggestion Engine
+  ↓
+FieldSuggestion
+  ↓
+Chrome Extension
 ```
 
-## Components
+## Bounded services
 
-- **Extension**: scans pages, presents suggestions, applies approved values.
-- **Server**: profile generation, matching, AI reasoning, APIs.
-- **Shared**: TypeScript models shared by extension and server.
-- **Evidence Store**: structured facts extracted from source documents.
+### Evidence Asset Library
+
+Owns original uploaded files. An `EvidenceAsset` is file metadata and storage reference.
+
+### Document Ingestion
+
+Turns extracted text or structured values into `EvidenceDocument` records.
+
+### Evidence Engine
+
+Ranks evidence, scores confidence, detects conflicts and builds the canonical profile.
+
+### Semantic Scanner
+
+Understands the live browser page and produces a `PageModel`.
+
+### Suggestion Engine
+
+Matches page fields to profile fields and produces explainable suggestions.
+
+### Profile Web App
+
+Manages upload, evidence review, and profile inspection.
+
+### Chrome Extension
+
+Handles in-form assistance only.
+
+## Key modelling distinction
+
+```text
+EvidenceAsset      = original uploaded file
+EvidenceDocument   = structured facts extracted from a source
+CanonicalProfile   = derived profile built from evidence documents
+FieldSuggestion    = decision for one form field
+```
