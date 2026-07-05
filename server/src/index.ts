@@ -4,6 +4,8 @@ import express from "express";
 //import suggestionsRouter from "./routes/suggestions.js";
 import { suggestionsRouter } from "./routes/suggestions.js";
 import { profileRouter } from "./routes/profile.js";
+import { evidenceRouter } from "./routes/evidence.js";
+import { documentsRouter } from "./routes/documents.js";
 
 dotenv.config();
 
@@ -19,8 +21,9 @@ app.get("/health", (_req, res) => {
 
 //app.use("/api/suggestions", suggestionsRouter);
 app.use("/api", suggestionsRouter);
-
 app.use("/api", profileRouter);
+app.use("/api", evidenceRouter);
+app.use("/api", documentsRouter);
 
 app.listen(port, () => {
   console.log(`Gov Form Copilot API running at http://localhost:${port}`);

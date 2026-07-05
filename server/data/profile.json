@@ -1,10 +1,16 @@
 {
   "student": {
     "givenName": "Penelope",
+    "middleName": "Rosalind",
     "familyName": "Court",
-    "preferredName": "Penelope",
+    "preferredName": "Penny",
     "dateOfBirth": "2017-03-14",
-    "gender": "Female"
+    "gender": "Female",
+    "countryOfBirth": "Australia",
+    "residencyStatus": "Australian Citizen",
+    "aboriginalOrTorresStraitIslander": "No",
+    "languageOtherThanEnglishAtHome": "No",
+    "attendedAnotherSchool": "No"
   },
   "parent": {
     "givenName": "Sam",
@@ -17,6 +23,7 @@
     "suburb": "Surry Hills",
     "state": "NSW",
     "postcode": "2010",
-    "country": "Australia"
+    "country": "Australia",
+    "fullAddress": "12 Example Street, Surry Hills NSW 2010, Australia"
   }
 }
