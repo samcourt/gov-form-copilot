@@ -1,0 +1,36 @@
+{
+  "id": "parent-declaration-001",
+  "type": "parent_declaration",
+  "label": "Parent Declaration",
+  "extractedAt": "2026-07-10T00:00:00.000Z",
+  "values": {
+    "parent.givenName": {
+      "value": "Sam",
+      "sourceId": "parent-declaration-001",
+      "sourceType": "parent_declaration",
+      "sourceLabel": "Parent Declaration",
+      "confidence": 0.95
+    },
+    "parent.familyName": {
+      "value": "Court",
+      "sourceId": "parent-declaration-001",
+      "sourceType": "parent_declaration",
+      "sourceLabel": "Parent Declaration",
+      "confidence": 0.95
+    },
+    "parent.email": {
+      "value": "sam@example.com",
+      "sourceId": "parent-declaration-001",
+      "sourceType": "parent_declaration",
+      "sourceLabel": "Parent Declaration",
+      "confidence": 0.95
+    },
+    "parent.mobile": {
+      "value": "0400000000",
+      "sourceId": "parent-declaration-001",
+      "sourceType": "parent_declaration",
+      "sourceLabel": "Parent Declaration",
+      "confidence": 0.95
+    }
+  }
+}
