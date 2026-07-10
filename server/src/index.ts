@@ -1,11 +1,11 @@
 import cors from "cors";
 import dotenv from "dotenv";
 import express from "express";
-//import suggestionsRouter from "./routes/suggestions.js";
 import { suggestionsRouter } from "./routes/suggestions.js";
 import { profileRouter } from "./routes/profile.js";
 import { evidenceRouter } from "./routes/evidence.js";
 import { documentsRouter } from "./routes/documents.js";
+import { identityGraphRouter } from "./routes/identityGraph.js";
 
 dotenv.config();
 
@@ -24,6 +24,7 @@ app.use("/api", suggestionsRouter);
 app.use("/api", profileRouter);
 app.use("/api", evidenceRouter);
 app.use("/api", documentsRouter);
+app.use("/api", identityGraphRouter);
 
 app.listen(port, () => {
   console.log(`Gov Form Copilot API running at http://localhost:${port}`);

@@ -1,14 +1,21 @@
 import { Router } from "express";
-import type { CanonicalProfile } from "@gov-form-copilot/shared";
+import {
+  identityGraphToCanonicalProfile,
+  type CanonicalProfile
+} from "@gov-form-copilot/shared";
 import { loadEvidenceDocuments } from "../evidence/evidenceStore.js";
-import { buildProfile } from "../evidence/profileBuilder.js";
+import { buildIdentityGraph } from "../evidence/identityGraphBuilder.js";
 
 export const profileRouter = Router();
 
 profileRouter.get("/profile", async (_req, res, next) => {
   try {
     const evidenceDocuments = await loadEvidenceDocuments();
-    const profile = buildProfile(evidenceDocuments);
+    const identityGraph = buildIdentityGraph(evidenceDocuments);
+    const profile = identityGraphToCanonicalProfile(
+      identityGraph,
+      evidenceDocuments
+    );
 
     res.json({
       ok: true,

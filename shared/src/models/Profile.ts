@@ -1,5 +1,15 @@
 import type { ProfileField } from "./Evidence.js";
+import type { IdentityGraph } from "./IdentityGraph.js";
 
+/**
+ * Legacy, form-shaped profile used by the current UI/API.
+ *
+ * Keep this during the v0.6 migration so existing profile rendering,
+ * suggestion matching, and browser-extension flows do not break.
+ *
+ * Long term, this should become a derived view over IdentityGraph rather
+ * than the source of truth.
+ */
 export interface CanonicalProfile {
   student: {
     givenName: ProfileField;
@@ -30,8 +40,15 @@ export interface CanonicalProfile {
   };
 }
 
+/**
+ * Transitional profile build result.
+ *
+ * `profile` remains for existing consumers.
+ * `identityGraph` is the new graph-shaped source of truth.
+ */
 export interface ProfileBuildResult {
   profile: CanonicalProfile;
+  identityGraph?: IdentityGraph;
   documents: number;
   fields: number;
   conflicts: number;

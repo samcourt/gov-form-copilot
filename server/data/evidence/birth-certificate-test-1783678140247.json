@@ -1,0 +1,41 @@
+{
+  "id": "birth-certificate-test-1783678140247",
+  "type": "birth_certificate",
+  "label": "Birth Certificate Test",
+  "extractedAt": "2026-07-10T10:09:00.247Z",
+  "uploadedAt": "2026-07-10T10:09:00.247Z",
+  "values": {
+    "student.givenName": {
+      "value": "First",
+      "sourceId": "birth-certificate-test-1783678140247",
+      "sourceType": "birth_certificate",
+      "sourceLabel": "Birth Certificate Test",
+      "confidence": 0.9,
+      "extractedAt": "2026-07-10T10:09:00.247Z"
+    },
+    "student.familyName": {
+      "value": "Last",
+      "sourceId": "birth-certificate-test-1783678140247",
+      "sourceType": "birth_certificate",
+      "sourceLabel": "Birth Certificate Test",
+      "confidence": 0.9,
+      "extractedAt": "2026-07-10T10:09:00.247Z"
+    },
+    "student.dateOfBirth": {
+      "value": "2000-12-12",
+      "sourceId": "birth-certificate-test-1783678140247",
+      "sourceType": "birth_certificate",
+      "sourceLabel": "Birth Certificate Test",
+      "confidence": 0.9,
+      "extractedAt": "2026-07-10T10:09:00.247Z"
+    },
+    "student.countryOfBirth": {
+      "value": "New Zealand",
+      "sourceId": "birth-certificate-test-1783678140247",
+      "sourceType": "birth_certificate",
+      "sourceLabel": "Birth Certificate Test",
+      "confidence": 0.9,
+      "extractedAt": "2026-07-10T10:09:00.247Z"
+    }
+  }
+}
