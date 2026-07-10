@@ -1,15 +1,15 @@
-import { Router } from "express";
 import { canonicalProfileToIdentityGraph } from "@gov-form-copilot/shared";
+
+import { Router } from "express";
 import { loadEvidenceDocuments } from "../evidence/evidenceStore.js";
-import { buildProfile } from "../evidence/profileBuilder.js";
+import { buildIdentityGraph } from "../evidence/identityGraphBuilder.js";
 
 export const identityGraphRouter = Router();
 
 identityGraphRouter.get("/identity-graph", async (_req, res, next) => {
   try {
     const evidenceDocuments = await loadEvidenceDocuments();
-    const profile = buildProfile(evidenceDocuments);
-    const identityGraph = canonicalProfileToIdentityGraph(profile);
+    const identityGraph = buildIdentityGraph(evidenceDocuments);
 
     res.json({
       ok: true,
@@ -29,3 +29,4 @@ identityGraphRouter.get("/identity-graph", async (_req, res, next) => {
     next(error);
   }
 });
+
