@@ -1,10 +1,21 @@
 import { Router } from "express";
-import type { CanonicalProfile, EvidenceDocument } from "@gov-form-copilot/shared";
-import type { ExtractTextRequest, StructuredEvidenceRequest } from "../ingestion/types.js";
+import {
+  identityGraphToCanonicalProfile,
+  type CanonicalProfile,
+  type EvidenceDocument,
+  type IdentityGraph
+} from "@gov-form-copilot/shared";
+import type {
+  ExtractTextRequest,
+  StructuredEvidenceRequest
+} from "../ingestion/types.js";
 import { createEvidenceDocumentFromValues } from "../ingestion/evidenceFactory.js";
 import { extractEvidenceFromText } from "../ingestion/ruleBasedExtractor.js";
-import { loadEvidenceDocuments, saveEvidenceDocument } from "../evidence/evidenceStore.js";
-import { buildProfile } from "../evidence/profileBuilder.js";
+import {
+  loadEvidenceDocuments,
+  saveEvidenceDocument
+} from "../evidence/evidenceStore.js";
+import { buildIdentityGraph } from "../evidence/identityGraphBuilder.js";
 
 export const documentsRouter = Router();
 
@@ -30,13 +41,25 @@ documentsRouter.post("/documents/evidence", async (req, res, next) => {
     await saveEvidenceDocument(evidenceDocument);
 
     const evidenceDocuments = await loadEvidenceDocuments();
-    const profile = buildProfile(evidenceDocuments);
+    const identityGraph = buildIdentityGraph(evidenceDocuments);
+    const profile = identityGraphToCanonicalProfile(
+      identityGraph,
+      evidenceDocuments
+    );
 
     res.json({
       ok: true,
       evidenceDocument,
+      identityGraph,
+      identityGraphSummary: summariseIdentityGraph(
+        identityGraph,
+        evidenceDocuments.length
+      ),
       profile,
-      profileSummary: summariseProfile(profile, evidenceDocuments.length)
+      profileSummary: summariseProfile(
+        profile,
+        evidenceDocuments.length
+      )
     });
   } catch (error) {
     next(error);
@@ -63,14 +86,26 @@ documentsRouter.post("/documents/extract-text", async (req, res, next) => {
     await saveEvidenceDocument(evidenceDocument);
 
     const evidenceDocuments = await loadEvidenceDocuments();
-    const profile = buildProfile(evidenceDocuments);
+    const identityGraph = buildIdentityGraph(evidenceDocuments);
+    const profile = identityGraphToCanonicalProfile(
+      identityGraph,
+      evidenceDocuments
+    );
 
     res.json({
       ok: true,
       evidenceDocument,
       extractedFields: Object.keys(evidenceDocument.values),
+      identityGraph,
+      identityGraphSummary: summariseIdentityGraph(
+        identityGraph,
+        evidenceDocuments.length
+      ),
       profile,
-      profileSummary: summariseProfile(profile, evidenceDocuments.length)
+      profileSummary: summariseProfile(
+        profile,
+        evidenceDocuments.length
+      )
     });
   } catch (error) {
     next(error);
@@ -81,7 +116,12 @@ documentsRouter.post("/documents/import", async (req, res, next) => {
   try {
     const document = req.body as EvidenceDocument;
 
-    if (!document?.id || !document?.type || !document?.label || !document?.values) {
+    if (
+      !document?.id ||
+      !document?.type ||
+      !document?.label ||
+      !document?.values
+    ) {
       return res.status(400).json({
         ok: false,
         error: "Request body must be a valid EvidenceDocument."
@@ -90,33 +130,78 @@ documentsRouter.post("/documents/import", async (req, res, next) => {
 
     await saveEvidenceDocument(document);
 
+    const evidenceDocuments = await loadEvidenceDocuments();
+    const identityGraph = buildIdentityGraph(evidenceDocuments);
+    const profile = identityGraphToCanonicalProfile(
+      identityGraph,
+      evidenceDocuments
+    );
+
     res.json({
       ok: true,
-      evidenceDocument: document
+      evidenceDocument: document,
+      identityGraph,
+      identityGraphSummary: summariseIdentityGraph(
+        identityGraph,
+        evidenceDocuments.length
+      ),
+      profile,
+      profileSummary: summariseProfile(
+        profile,
+        evidenceDocuments.length
+      )
     });
   } catch (error) {
     next(error);
   }
 });
 
-function summariseProfile(profile: CanonicalProfile, documents: number) {
+function summariseIdentityGraph(
+  identityGraph: IdentityGraph,
+  documents: number
+) {
+  return {
+    documents,
+    people: identityGraph.people.length,
+    relationships: identityGraph.relationships.length,
+    households: identityGraph.households.length,
+    addresses: identityGraph.addresses.length,
+    applications: identityGraph.applications.length,
+    generatedAt: new Date().toISOString()
+  };
+}
+
+function summariseProfile(
+  profile: CanonicalProfile,
+  documents: number
+) {
   const fields = flattenProfileFields(profile);
 
   return {
     documents,
     fields: fields.length,
-    conflicts: fields.filter((field) => Array.isArray(field.conflicts) && field.conflicts.length > 0).length,
+    conflicts: fields.filter(
+      (field) =>
+        Array.isArray(field.conflicts) &&
+        field.conflicts.length > 0
+    ).length,
     generatedAt: new Date().toISOString()
   };
 }
 
-function flattenProfileFields(profile: CanonicalProfile): Array<{ conflicts?: unknown[] }> {
+function flattenProfileFields(
+  profile: CanonicalProfile
+): Array<{ conflicts?: unknown[] }> {
   const fields: Array<{ conflicts?: unknown[] }> = [];
 
   function walk(value: unknown): void {
     if (!value || typeof value !== "object") return;
 
-    if ("confidence" in value && "evidence" in value && "conflicts" in value) {
+    if (
+      "confidence" in value &&
+      "evidence" in value &&
+      "conflicts" in value
+    ) {
       fields.push(value as { conflicts?: unknown[] });
       return;
     }
