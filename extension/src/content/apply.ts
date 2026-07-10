@@ -78,7 +78,8 @@ function setCheckableValue(el: HTMLInputElement, value: string): void {
     const descriptor = Object.getOwnPropertyDescriptor(prototype, "checked");
     descriptor?.set?.call(el, desired);
 
-    if (el.checked !== desired) el.checked = desired;
+    //if (el.checked !== desired) el.checked = desired;
+	el.checked = desired;
   }
 
   fireInputEvents(el);
