@@ -1,0 +1,45 @@
+{
+  "id": "birth-certificate-test-2-1783677799521",
+  "type": "birth_certificate",
+  "label": "Birth Certificate Test 2",
+  "extractedAt": "2026-07-10T10:03:19.521Z",
+  "uploadedAt": "2026-07-10T10:03:19.521Z",
+  "values": {
+    "student.givenName": {
+      "value": "John Family Name",
+      "sourceId": "birth-certificate-test-2-1783677799521",
+      "sourceType": "birth_certificate",
+      "sourceLabel": "Birth Certificate Test 2",
+      "confidence": 0.7,
+      "extractedAt": "2026-07-10T10:03:19.521Z",
+      "rawText": "Given Names: John\nFamily Name: Doe\nDate of Birth: 01/01/2001\nCountry of Birth: United States of America"
+    },
+    "student.familyName": {
+      "value": "Doe Date of Birth",
+      "sourceId": "birth-certificate-test-2-1783677799521",
+      "sourceType": "birth_certificate",
+      "sourceLabel": "Birth Certificate Test 2",
+      "confidence": 0.7,
+      "extractedAt": "2026-07-10T10:03:19.521Z",
+      "rawText": "Given Names: John\nFamily Name: Doe\nDate of Birth: 01/01/2001\nCountry of Birth: United States of America"
+    },
+    "student.dateOfBirth": {
+      "value": "2001-01-01",
+      "sourceId": "birth-certificate-test-2-1783677799521",
+      "sourceType": "birth_certificate",
+      "sourceLabel": "Birth Certificate Test 2",
+      "confidence": 0.7,
+      "extractedAt": "2026-07-10T10:03:19.521Z",
+      "rawText": "Given Names: John\nFamily Name: Doe\nDate of Birth: 01/01/2001\nCountry of Birth: United States of America"
+    },
+    "student.countryOfBirth": {
+      "value": "United States of America",
+      "sourceId": "birth-certificate-test-2-1783677799521",
+      "sourceType": "birth_certificate",
+      "sourceLabel": "Birth Certificate Test 2",
+      "confidence": 0.7,
+      "extractedAt": "2026-07-10T10:03:19.521Z",
+      "rawText": "Given Names: John\nFamily Name: Doe\nDate of Birth: 01/01/2001\nCountry of Birth: United States of America"
+    }
+  }
+}

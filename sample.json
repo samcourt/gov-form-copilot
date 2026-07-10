@@ -1,0 +1,554 @@
+{
+  "ok": true,
+  "profile": {
+    "student": {
+      "givenName": {
+        "path": "student.givenName",
+        "value": "Penelope",
+        "confidence": 0.99,
+        "status": "conflicted",
+        "evidence": [
+          {
+            "value": "Penelope",
+            "sourceId": "birth-certificate-001",
+            "sourceType": "birth_certificate",
+            "sourceLabel": "Birth Certificate",
+            "confidence": 0.99
+          },
+          {
+            "value": "John Family Name",
+            "sourceId": "birth-certificate-test-2-1783677799521",
+            "sourceType": "birth_certificate",
+            "sourceLabel": "Birth Certificate Test 2",
+            "confidence": 0.7,
+            "extractedAt": "2026-07-10T10:03:19.521Z",
+            "rawText": "Given Names: John\nFamily Name: Doe\nDate of Birth: 01/01/2001\nCountry of Birth: United States of America"
+          }
+        ],
+        "conflicts": [
+          {
+            "value": "John Family Name",
+            "sourceId": "birth-certificate-test-2-1783677799521",
+            "sourceType": "birth_certificate",
+            "sourceLabel": "Birth Certificate Test 2",
+            "confidence": 0.7,
+            "extractedAt": "2026-07-10T10:03:19.521Z",
+            "rawText": "Given Names: John\nFamily Name: Doe\nDate of Birth: 01/01/2001\nCountry of Birth: United States of America"
+          }
+        ],
+        "reason": "Selected Birth Certificate, but found conflicting evidence."
+      },
+      "middleName": {
+        "path": "student.middleName",
+        "confidence": 0,
+        "status": "unsupported",
+        "evidence": [],
+        "conflicts": [],
+        "reason": "No supporting evidence found."
+      },
+      "familyName": {
+        "path": "student.familyName",
+        "value": "Court",
+        "confidence": 0.99,
+        "status": "conflicted",
+        "evidence": [
+          {
+            "value": "Court",
+            "sourceId": "birth-certificate-001",
+            "sourceType": "birth_certificate",
+            "sourceLabel": "Birth Certificate",
+            "confidence": 0.99
+          },
+          {
+            "value": "Doe Date of Birth",
+            "sourceId": "birth-certificate-test-2-1783677799521",
+            "sourceType": "birth_certificate",
+            "sourceLabel": "Birth Certificate Test 2",
+            "confidence": 0.7,
+            "extractedAt": "2026-07-10T10:03:19.521Z",
+            "rawText": "Given Names: John\nFamily Name: Doe\nDate of Birth: 01/01/2001\nCountry of Birth: United States of America"
+          }
+        ],
+        "conflicts": [
+          {
+            "value": "Doe Date of Birth",
+            "sourceId": "birth-certificate-test-2-1783677799521",
+            "sourceType": "birth_certificate",
+            "sourceLabel": "Birth Certificate Test 2",
+            "confidence": 0.7,
+            "extractedAt": "2026-07-10T10:03:19.521Z",
+            "rawText": "Given Names: John\nFamily Name: Doe\nDate of Birth: 01/01/2001\nCountry of Birth: United States of America"
+          }
+        ],
+        "reason": "Selected Birth Certificate, but found conflicting evidence."
+      },
+      "preferredName": {
+        "path": "student.preferredName",
+        "confidence": 0,
+        "status": "unsupported",
+        "evidence": [],
+        "conflicts": [],
+        "reason": "No supporting evidence found."
+      },
+      "dateOfBirth": {
+        "path": "student.dateOfBirth",
+        "value": "2017-03-14",
+        "confidence": 0.98,
+        "status": "conflicted",
+        "evidence": [
+          {
+            "value": "2017-03-14",
+            "sourceId": "birth-certificate-001",
+            "sourceType": "birth_certificate",
+            "sourceLabel": "Birth Certificate",
+            "confidence": 0.98
+          },
+          {
+            "value": "2001-01-01",
+            "sourceId": "birth-certificate-test-2-1783677799521",
+            "sourceType": "birth_certificate",
+            "sourceLabel": "Birth Certificate Test 2",
+            "confidence": 0.7,
+            "extractedAt": "2026-07-10T10:03:19.521Z",
+            "rawText": "Given Names: John\nFamily Name: Doe\nDate of Birth: 01/01/2001\nCountry of Birth: United States of America"
+          }
+        ],
+        "conflicts": [
+          {
+            "value": "2001-01-01",
+            "sourceId": "birth-certificate-test-2-1783677799521",
+            "sourceType": "birth_certificate",
+            "sourceLabel": "Birth Certificate Test 2",
+            "confidence": 0.7,
+            "extractedAt": "2026-07-10T10:03:19.521Z",
+            "rawText": "Given Names: John\nFamily Name: Doe\nDate of Birth: 01/01/2001\nCountry of Birth: United States of America"
+          }
+        ],
+        "reason": "Selected Birth Certificate, but found conflicting evidence."
+      },
+      "gender": {
+        "path": "student.gender",
+        "confidence": 0,
+        "status": "unsupported",
+        "evidence": [],
+        "conflicts": [],
+        "reason": "No supporting evidence found."
+      },
+      "countryOfBirth": {
+        "path": "student.countryOfBirth",
+        "value": "Australia",
+        "confidence": 0.95,
+        "status": "conflicted",
+        "evidence": [
+          {
+            "value": "Australia",
+            "sourceId": "birth-certificate-001",
+            "sourceType": "birth_certificate",
+            "sourceLabel": "Birth Certificate",
+            "confidence": 0.95
+          },
+          {
+            "value": "United States of America",
+            "sourceId": "birth-certificate-test-2-1783677799521",
+            "sourceType": "birth_certificate",
+            "sourceLabel": "Birth Certificate Test 2",
+            "confidence": 0.7,
+            "extractedAt": "2026-07-10T10:03:19.521Z",
+            "rawText": "Given Names: John\nFamily Name: Doe\nDate of Birth: 01/01/2001\nCountry of Birth: United States of America"
+          }
+        ],
+        "conflicts": [
+          {
+            "value": "United States of America",
+            "sourceId": "birth-certificate-test-2-1783677799521",
+            "sourceType": "birth_certificate",
+            "sourceLabel": "Birth Certificate Test 2",
+            "confidence": 0.7,
+            "extractedAt": "2026-07-10T10:03:19.521Z",
+            "rawText": "Given Names: John\nFamily Name: Doe\nDate of Birth: 01/01/2001\nCountry of Birth: United States of America"
+          }
+        ],
+        "reason": "Selected Birth Certificate, but found conflicting evidence."
+      },
+      "residencyStatus": {
+        "path": "student.residencyStatus",
+        "confidence": 0,
+        "status": "unsupported",
+        "evidence": [],
+        "conflicts": [],
+        "reason": "No supporting fact found in the identity graph."
+      },
+      "aboriginalOrTorresStraitIslander": {
+        "path": "student.aboriginalOrTorresStraitIslander",
+        "confidence": 0,
+        "status": "unsupported",
+        "evidence": [],
+        "conflicts": [],
+        "reason": "No supporting fact found in the identity graph."
+      },
+      "languageOtherThanEnglishAtHome": {
+        "path": "student.languageOtherThanEnglishAtHome",
+        "confidence": 0,
+        "status": "unsupported",
+        "evidence": [],
+        "conflicts": [],
+        "reason": "No supporting fact found in the identity graph."
+      },
+      "attendedAnotherSchool": {
+        "path": "student.attendedAnotherSchool",
+        "confidence": 0,
+        "status": "unsupported",
+        "evidence": [],
+        "conflicts": [],
+        "reason": "No supporting fact found in the identity graph."
+      }
+    },
+    "parent": {
+      "givenName": {
+        "path": "parent.givenName",
+        "value": "Sam",
+        "confidence": 0.617,
+        "status": "needs_review",
+        "evidence": [
+          {
+            "value": "Sam",
+            "sourceId": "parent-declaration-001",
+            "sourceType": "parent_declaration",
+            "sourceLabel": "Parent Declaration",
+            "confidence": 0.95
+          }
+        ],
+        "conflicts": [],
+        "reason": "Selected highest-ranked evidence from Parent Declaration."
+      },
+      "familyName": {
+        "path": "parent.familyName",
+        "value": "Court",
+        "confidence": 0.617,
+        "status": "needs_review",
+        "evidence": [
+          {
+            "value": "Court",
+            "sourceId": "parent-declaration-001",
+            "sourceType": "parent_declaration",
+            "sourceLabel": "Parent Declaration",
+            "confidence": 0.95
+          }
+        ],
+        "conflicts": [],
+        "reason": "Selected highest-ranked evidence from Parent Declaration."
+      },
+      "email": {
+        "path": "parent.email",
+        "value": "sam@example.com",
+        "confidence": 0.617,
+        "status": "needs_review",
+        "evidence": [
+          {
+            "value": "sam@example.com",
+            "sourceId": "parent-declaration-001",
+            "sourceType": "parent_declaration",
+            "sourceLabel": "Parent Declaration",
+            "confidence": 0.95
+          }
+        ],
+        "conflicts": [],
+        "reason": "Selected highest-ranked evidence from Parent Declaration."
+      },
+      "mobile": {
+        "path": "parent.mobile",
+        "value": "0400000000",
+        "confidence": 0.617,
+        "status": "needs_review",
+        "evidence": [
+          {
+            "value": "0400000000",
+            "sourceId": "parent-declaration-001",
+            "sourceType": "parent_declaration",
+            "sourceLabel": "Parent Declaration",
+            "confidence": 0.95
+          }
+        ],
+        "conflicts": [],
+        "reason": "Selected highest-ranked evidence from Parent Declaration."
+      }
+    },
+    "address": {
+      "line1": {
+        "path": "address.line1",
+        "value": "12 Example Street",
+        "confidence": 0.736,
+        "status": "needs_review",
+        "evidence": [
+          {
+            "value": "12 Example Street",
+            "sourceId": "utility-bill-001",
+            "sourceType": "utility_bill",
+            "sourceLabel": "Utility Bill",
+            "confidence": 0.92
+          }
+        ],
+        "conflicts": [],
+        "reason": "Selected highest-ranked evidence from Utility Bill."
+      },
+      "suburb": {
+        "path": "address.suburb",
+        "value": "Surry Hills",
+        "confidence": 0.736,
+        "status": "needs_review",
+        "evidence": [
+          {
+            "value": "Surry Hills",
+            "sourceId": "utility-bill-001",
+            "sourceType": "utility_bill",
+            "sourceLabel": "Utility Bill",
+            "confidence": 0.92
+          }
+        ],
+        "conflicts": [],
+        "reason": "Selected highest-ranked evidence from Utility Bill."
+      },
+      "state": {
+        "path": "address.state",
+        "value": "NSW",
+        "confidence": 0.736,
+        "status": "needs_review",
+        "evidence": [
+          {
+            "value": "NSW",
+            "sourceId": "utility-bill-001",
+            "sourceType": "utility_bill",
+            "sourceLabel": "Utility Bill",
+            "confidence": 0.92
+          }
+        ],
+        "conflicts": [],
+        "reason": "Selected highest-ranked evidence from Utility Bill."
+      },
+      "postcode": {
+        "path": "address.postcode",
+        "value": "2010",
+        "confidence": 0.736,
+        "status": "needs_review",
+        "evidence": [
+          {
+            "value": "2010",
+            "sourceId": "utility-bill-001",
+            "sourceType": "utility_bill",
+            "sourceLabel": "Utility Bill",
+            "confidence": 0.92
+          }
+        ],
+        "conflicts": [],
+        "reason": "Selected highest-ranked evidence from Utility Bill."
+      },
+      "country": {
+        "path": "address.country",
+        "value": "Australia",
+        "confidence": 0.72,
+        "status": "needs_review",
+        "evidence": [
+          {
+            "value": "Australia",
+            "sourceId": "utility-bill-001",
+            "sourceType": "utility_bill",
+            "sourceLabel": "Utility Bill",
+            "confidence": 0.9
+          }
+        ],
+        "conflicts": [],
+        "reason": "Selected highest-ranked evidence from Utility Bill."
+      },
+      "fullAddress": {
+        "path": "address.fullAddress",
+        "value": "12 Example Street, Surry Hills NSW 2010, Australia",
+        "confidence": 0.736,
+        "status": "needs_review",
+        "evidence": [
+          {
+            "value": "12 Example Street, Surry Hills NSW 2010, Australia",
+            "sourceId": "utility-bill-001",
+            "sourceType": "utility_bill",
+            "sourceLabel": "Utility Bill",
+            "confidence": 0.92
+          }
+        ],
+        "conflicts": [],
+        "reason": "Selected highest-ranked evidence from Utility Bill."
+      }
+    }
+  },
+  "evidenceDocuments": [
+    {
+      "id": "birth-certificate-test-2-1783677799521",
+      "type": "birth_certificate",
+      "label": "Birth Certificate Test 2",
+      "extractedAt": "2026-07-10T10:03:19.521Z",
+      "uploadedAt": "2026-07-10T10:03:19.521Z",
+      "values": {
+        "student.givenName": {
+          "value": "John Family Name",
+          "sourceId": "birth-certificate-test-2-1783677799521",
+          "sourceType": "birth_certificate",
+          "sourceLabel": "Birth Certificate Test 2",
+          "confidence": 0.7,
+          "extractedAt": "2026-07-10T10:03:19.521Z",
+          "rawText": "Given Names: John\nFamily Name: Doe\nDate of Birth: 01/01/2001\nCountry of Birth: United States of America"
+        },
+        "student.familyName": {
+          "value": "Doe Date of Birth",
+          "sourceId": "birth-certificate-test-2-1783677799521",
+          "sourceType": "birth_certificate",
+          "sourceLabel": "Birth Certificate Test 2",
+          "confidence": 0.7,
+          "extractedAt": "2026-07-10T10:03:19.521Z",
+          "rawText": "Given Names: John\nFamily Name: Doe\nDate of Birth: 01/01/2001\nCountry of Birth: United States of America"
+        },
+        "student.dateOfBirth": {
+          "value": "2001-01-01",
+          "sourceId": "birth-certificate-test-2-1783677799521",
+          "sourceType": "birth_certificate",
+          "sourceLabel": "Birth Certificate Test 2",
+          "confidence": 0.7,
+          "extractedAt": "2026-07-10T10:03:19.521Z",
+          "rawText": "Given Names: John\nFamily Name: Doe\nDate of Birth: 01/01/2001\nCountry of Birth: United States of America"
+        },
+        "student.countryOfBirth": {
+          "value": "United States of America",
+          "sourceId": "birth-certificate-test-2-1783677799521",
+          "sourceType": "birth_certificate",
+          "sourceLabel": "Birth Certificate Test 2",
+          "confidence": 0.7,
+          "extractedAt": "2026-07-10T10:03:19.521Z",
+          "rawText": "Given Names: John\nFamily Name: Doe\nDate of Birth: 01/01/2001\nCountry of Birth: United States of America"
+        }
+      }
+    },
+    {
+      "id": "birth-certificate-001",
+      "type": "birth_certificate",
+      "label": "Birth Certificate",
+      "extractedAt": "2026-07-03T00:00:00.000Z",
+      "values": {
+        "student.givenName": {
+          "value": "Penelope",
+          "sourceId": "birth-certificate-001",
+          "sourceType": "birth_certificate",
+          "sourceLabel": "Birth Certificate",
+          "confidence": 0.99
+        },
+        "student.familyName": {
+          "value": "Court",
+          "sourceId": "birth-certificate-001",
+          "sourceType": "birth_certificate",
+          "sourceLabel": "Birth Certificate",
+          "confidence": 0.99
+        },
+        "student.dateOfBirth": {
+          "value": "2017-03-14",
+          "sourceId": "birth-certificate-001",
+          "sourceType": "birth_certificate",
+          "sourceLabel": "Birth Certificate",
+          "confidence": 0.98
+        },
+        "student.countryOfBirth": {
+          "value": "Australia",
+          "sourceId": "birth-certificate-001",
+          "sourceType": "birth_certificate",
+          "sourceLabel": "Birth Certificate",
+          "confidence": 0.95
+        }
+      }
+    },
+    {
+      "id": "parent-declaration-001",
+      "type": "parent_declaration",
+      "label": "Parent Declaration",
+      "extractedAt": "2026-07-10T00:00:00.000Z",
+      "values": {
+        "parent.givenName": {
+          "value": "Sam",
+          "sourceId": "parent-declaration-001",
+          "sourceType": "parent_declaration",
+          "sourceLabel": "Parent Declaration",
+          "confidence": 0.95
+        },
+        "parent.familyName": {
+          "value": "Court",
+          "sourceId": "parent-declaration-001",
+          "sourceType": "parent_declaration",
+          "sourceLabel": "Parent Declaration",
+          "confidence": 0.95
+        },
+        "parent.email": {
+          "value": "sam@example.com",
+          "sourceId": "parent-declaration-001",
+          "sourceType": "parent_declaration",
+          "sourceLabel": "Parent Declaration",
+          "confidence": 0.95
+        },
+        "parent.mobile": {
+          "value": "0400000000",
+          "sourceId": "parent-declaration-001",
+          "sourceType": "parent_declaration",
+          "sourceLabel": "Parent Declaration",
+          "confidence": 0.95
+        }
+      }
+    },
+    {
+      "id": "utility-bill-001",
+      "type": "utility_bill",
+      "label": "Utility Bill",
+      "extractedAt": "2026-07-03T00:00:00.000Z",
+      "values": {
+        "address.line1": {
+          "value": "12 Example Street",
+          "sourceId": "utility-bill-001",
+          "sourceType": "utility_bill",
+          "sourceLabel": "Utility Bill",
+          "confidence": 0.92
+        },
+        "address.suburb": {
+          "value": "Surry Hills",
+          "sourceId": "utility-bill-001",
+          "sourceType": "utility_bill",
+          "sourceLabel": "Utility Bill",
+          "confidence": 0.92
+        },
+        "address.state": {
+          "value": "NSW",
+          "sourceId": "utility-bill-001",
+          "sourceType": "utility_bill",
+          "sourceLabel": "Utility Bill",
+          "confidence": 0.92
+        },
+        "address.postcode": {
+          "value": "2010",
+          "sourceId": "utility-bill-001",
+          "sourceType": "utility_bill",
+          "sourceLabel": "Utility Bill",
+          "confidence": 0.92
+        },
+        "address.country": {
+          "value": "Australia",
+          "sourceId": "utility-bill-001",
+          "sourceType": "utility_bill",
+          "sourceLabel": "Utility Bill",
+          "confidence": 0.9
+        },
+        "address.fullAddress": {
+          "value": "12 Example Street, Surry Hills NSW 2010, Australia",
+          "sourceId": "utility-bill-001",
+          "sourceType": "utility_bill",
+          "sourceLabel": "Utility Bill",
+          "confidence": 0.92
+        }
+      }
+    }
+  ],
+  "documents": 4,
+  "fields": 21,
+  "conflicts": 4,
+  "generatedAt": "2026-07-10T10:06:32.037Z"
+}
