@@ -2,6 +2,12 @@ import type { EvidenceRef } from "./EvidenceRef.js";
 
 export type HouseholdMemberRole = "adult" | "child" | "dependant" | "other";
 
+export type HouseholdSource =
+  | "declared"
+  | "imported"
+  | "inferred"
+  | "application_specific";
+
 export interface HouseholdMember {
   personId: string;
   role: HouseholdMemberRole;
@@ -10,17 +16,21 @@ export interface HouseholdMember {
 }
 
 /**
- * Household groups people and addresses for an application context.
+ * Contextual grouping of people and addresses.
  *
- * Household membership is not the same as a legal relationship. Parent/child,
- * carer, partner, and emergency contact relationships belong in Relationship.
+ * Household membership does not imply a legal or family relationship.
+ * Parent, child, partner and carer links belong in Relationship.
  */
 export interface Household {
   id: string;
   name?: string;
+  source: HouseholdSource;
+
   members: HouseholdMember[];
   addressIds: string[];
+
   evidenceRefs?: EvidenceRef[];
+
   createdAt?: string;
   updatedAt?: string;
 }

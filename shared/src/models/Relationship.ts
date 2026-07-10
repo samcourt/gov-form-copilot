@@ -2,7 +2,6 @@ import type { EvidenceRef } from "./EvidenceRef.js";
 
 export type RelationshipType =
   | "parent_of"
-  | "child_of"
   | "partner_of"
   | "carer_of"
   | "sibling_of"
@@ -11,19 +10,27 @@ export type RelationshipType =
   | "other";
 
 /**
- * Directional link between two people.
+ * Directional relationship between two people.
  *
- * Example: fromPersonId=parent, toPersonId=child, relationshipType="parent_of".
+ * Only one canonical direction should be stored. Inverse labels such as
+ * child_of should be derived when displaying or querying the graph.
+ *
+ * Example:
+ * fromPersonId = parent
+ * toPersonId = child
+ * relationshipType = parent_of
  */
 export interface Relationship {
   id: string;
   fromPersonId: string;
   toPersonId: string;
   relationshipType: RelationshipType;
-  inverseRelationshipType?: RelationshipType | (string & {});
+
   startDate?: string;
   endDate?: string;
+
   evidenceRefs?: EvidenceRef[];
+
   createdAt?: string;
   updatedAt?: string;
 }
