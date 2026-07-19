@@ -154,10 +154,8 @@ function App() {
         <>
           <PageSummary page={page} />
           <ScannerSummary
-            fieldCount={fields.length}
-            matchedCount={matchedCount}
-            safeCount={safeCount}
-            blockedCount={blockedCount}
+            fields={fields}
+            matchedCount={Object.keys(suggestions).length}
           />
         </>
       )}

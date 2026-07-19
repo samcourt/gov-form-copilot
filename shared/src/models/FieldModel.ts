@@ -40,4 +40,42 @@ export interface FieldModel {
    * Example: "Student's gender".
    */
   groupLabel?: string;
+
+  
+  /**
+   * Structural path supplied by the form framework.
+   * Example:
+   * parents>parentCarers[1].parentCarerGivenName
+   */
+  bindingPath?: string;
+
+  /**
+   * Logical entity represented by the field.
+   */
+  entityType?: FormEntityType;
+
+  /**
+   * Index for repeated entities.
+   * Example: parentCarers[1] → 1.
+   */
+  entityIndex?: number;
+
+  /**
+   * Property inferred from the structural binding.
+   * Example: parentCarerGivenName.
+   */
+  bindingProperty?: string;
+
+  /**
+   * Groups individual radio/checkbox controls into one question.
+   */
+  logicalFieldId?: string;
 }
+
+export type FormEntityType =
+  | "student"
+  | "parentCarer"
+  | "address"
+  | "household"
+  | "unknown";
+
